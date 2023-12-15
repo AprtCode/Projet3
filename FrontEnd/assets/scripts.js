@@ -1,104 +1,96 @@
 
- // Code après le chargement de la page : Chargement de contenu dynamique avec Fetch API
-
+ // Code exécuté une fois que la page est chargée
 document.addEventListener('DOMContentLoaded', function() {
-
-    
-    fetch('http://localhost:5678/api-docs/works')
-      .then(response => response.json()) // convertit la réponse en JSON
-      .then(projects => {
-        
-        mettreAJourGalerie(projects)
-       
-      })
-      .catch(error => {
-        console.error('Échec de la récupération des projets:', error);
-
-      });
-
-      
+  // Récupération des projets
+  fetch('http://localhost:5678/api/works')
+    .then(response => response.json()) // convertit la réponse en JSON
+    .then(projects => {        
+      afficherGalerie(projects)       
+    })
+    .catch(error => {
+      console.error('Échec de la récupération des projets:', error);
+    });
+  // Récupération des catégories
+  fetch('http://localhost:5678/api/categories')
+    .then(response => response.json()) // convertit la réponse en JSON
+    .then(categories => {        
+      afficherCategories(categories)      
+    })
+    .catch(error => {
+      console.error('Échec de la récupération des catégories:', error);
+    });
 })
 
+// Fonction pour afficher les projets
+  
+function afficherGalerie(projets) {
+  const galerie = document.querySelector('.gallery');
+  galerie.innerHTML = ''; // Nettoie la galerie
 
-// Code des filtres de catégories
+  // Boucle sur tous les projets
+  projets.forEach(projet => {
+    const figure = document.createElement('figure');
+    const img = document.createElement('img');
+    const figcaption = document.createElement('figcaption');
 
-document.querySelectorAll('.filtre-categorie').forEach(bouton => {
-    bouton.addEventListener('click', function() {
-      const categorieSelectionnee = this.dataset.categorie;
-    
-      // Supposant que 'projects' est le tableau contenant tous vos projets
-      const projetsFiltres = projects.filter(projet => {
-        return categorieSelectionnee === 'Tous' || projet.categorie === categorieSelectionnee;
-      });
-    
-      // Mise à jour de la galerie avec les projets filtrés
-      mettreAJourGalerie(projetsFiltres);
-    });
+    img.src = projet.imageUrl; 
+    img.alt = projet.name; 
+    figcaption.textContent = projet.name; 
+
+    figure.appendChild(img);
+    figure.appendChild(figcaption);
+    galerie.appendChild(figure);
   });
+}
   
-  function mettreAJourGalerie(projets) {
-    const galerie = document.querySelector('.gallery');
-    galerie.innerHTML = ''; // Nettoie la galerie
-  
-    // Ajoute les projets filtrés à la galerie
-    projets.forEach(projet => {
-      const figure = document.createElement('figure');
-      const img = document.createElement('img');
-      const figcaption = document.createElement('figcaption');
-  
-      img.src = projet.imageUrl; // remplacez selon votre structure de données
-      img.alt = projet.name; // remplacez selon votre structure de données
-      figcaption.textContent = projet.name; // remplacez selon votre structure de données
-  
-      figure.appendChild(img);
-      figure.appendChild(figcaption);
-      galerie.appendChild(figure);
-    });
-  }
-  
-  function afficherCategorie(categories) {
-    const listeCategorie = document.querySelector('#menu-categories');
-    
-    console.log(hi)
+// Fonction pour afficher les catégories
+function afficherCategories(categories) {
+  const listeCategorie = document.querySelector('#menu-categories');
 
-    categories.forEach(categorie => {
-      const buttonCategorie = document.createElement('button');
-      buttonCategorie.classList.add('filtre-categorie')
-      buttonCategorie.innerText = categorie.name
-      listeCategorie.appendChild(buttonCategorie)
+  // Affichage du bouton "Tous"
+  const buttonCategorie = document.createElement('button');
+  buttonCategorie.classList.add('filtre-categorie')
+  buttonCategorie.innerText = "Tous"
+  listeCategorie.appendChild(buttonCategorie)
+
+  // Ajouter le addeventlistener sur ce bouton
+  buttonCategorie.addEventListener("click", function(){
+    fetch('http://localhost:5678/api/works')
+    .then(response => response.json()) // convertit la réponse en JSON
+    .then(projects => {        
+      afficherGalerie(projects)       
     })
+  })
 
-      
+  // Récupérer tous les projets
+  // Appeler la fonction afficherGalerie avec en parametre tous les projets
 
-  }
+  // Boucle pour afficher toutes les catégories
+
+  categories.forEach(categorie => {
+    const buttonCategorie = document.createElement('button');
+    buttonCategorie.classList.add('filtre-categorie')
+    buttonCategorie.innerText = categorie.name
+    listeCategorie.appendChild(buttonCategorie)
+    buttonCategorie.addEventListener("click", function(){
+      filtrerProjetsParCategorie(categorie.name)
+    })
+    // Ajouter le addeventlistener pour appeler la fonction filtrerProjetsParCategorie
+  })
+}
+
+// Fonction pour filtrer après un click sur une cétégorie
+function filtrerProjetsParCategorie(categorie) {
+  fetch('http://localhost:5678/api/works')
+    .then(response => response.json()) 
+    .then(works => {  
+      const worksFilter = works.filter(function(results){
+        return results.category.name === categorie
+      }) 
+      afficherGalerie(worksFilter) 
+    })    
+  // Les filtrer selon le nom de categorie passé en parametre
+  // Appeler la fonction afficherGalerie avec en parametre les projets filtrés
 
 
-
-// Code buttons html css
-
-  document.querySelectorAll('.filtre-categorie').forEach(button => {
-    button.addEventListener('click', function() {
-      // Remove active class from all buttons
-      document.querySelectorAll('.filtre-categorie').forEach(btn => btn.classList.remove('active-categorie'));
-      // Add active class to the clicked button
-      this.classList.add('active-categorie');
-      // Your code to filter content based on the category selected
-      filterContent(this.dataset.categoria);
-    });
-  });
-  
-  function filterContent(categoria) {
-    console.log("Filter content for category:", categoria);
-    // Implement the logic to filter and display the content based on the category
-    // This is where you would hide/show elements or fetch new data based on the category
-  }
-  
-
-
-
-  fetch('http://localhost:5678/api-docs/categories')
-      .then(response => response.json()) // convertit la réponse en JSON
-      .then(categories => {
-      
-      afficherCategorie(categories)
-  });
+}
