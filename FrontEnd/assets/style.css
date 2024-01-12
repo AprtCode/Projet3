@@ -185,10 +185,6 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
-
-
-
-
 /* menu buttons categories */
 
 #menu-categories {
@@ -221,3 +217,6 @@ footer nav ul {
 	background-color: #1D6154; /* Dark green background for active */
 	color: #fff; /* White text for active */
   }
+
+
+

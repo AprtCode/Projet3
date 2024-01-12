@@ -94,3 +94,6 @@ function filtrerProjetsParCategorie(categorie) {
 
 
 }
+
+
+
