@@ -20,7 +20,9 @@ time, mark, audio, video {
 	padding: 0;
 	border: 0;
 	font-size: 100%;
-	font: inherit;
+	font: inherit; /* pour enlever hypertexte login li*/
+	color: inherit; /* pour enlever hypertexte login li*/     
+	text-decoration: none;
 	vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -220,3 +222,116 @@ footer nav ul {
 
 
 
+
+/* Page login */
+
+
+.login-page {
+	background-color: #FFFEF8 ;
+	margin: auto;
+    font-family: 'Work Sans';
+    font-size: 14px;
+}
+
+main {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	margin: 0; 
+  }
+
+  
+.logoinstagram {
+	width: 10px !important;
+  }
+
+.login-container {
+	display: flex;
+    width: 100%; 
+    max-width: 379px;
+    flex-direction: column;
+    align-items: center;
+    margin: auto; 
+}
+
+.textelogin {
+	margin-bottom: 50px;
+
+}
+
+label {
+    display: block; 
+    margin-bottom: 10px; 
+    
+}
+
+input[type="text"],
+input[type="password"] {
+	width: 100% !important; 
+    max-width: 379px !important; 
+    height: 51px;
+    margin-bottom: 30px;
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+    box-sizing: border-box;
+    border: none;
+	
+}
+
+
+button[type="submit"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 179px;
+    height: 36px;
+    border-radius: 60px;
+    background: #1D6154;
+    color: #fff;
+    margin-bottom: 28px;
+    border: none;
+    padding: 0; 
+    text-align: center; 
+    cursor: pointer; 
+}
+
+
+.password-reset {
+    text-align: center;
+    width: 100%;
+    margin-top: 20px; 
+}
+
+.mpoublie {
+    text-decoration: underline;
+    color: inherit; 
+    
+}
+
+
+
+/* Media Qweries */
+
+@media (min-width: 768px) {
+    .login-container {
+        width: 50%;
+    }
+}
+
+@media (min-width: 1024px) {
+    .login-container {
+        width: 40%; 
+    }
+}
+
+@media (min-width: 1200px) {
+    .login-container {
+        width: 30%; 
+    }
+}
+
+@media (min-width: 1900px) {
+    .login-container {
+        width: 20%; 
+    }
+}

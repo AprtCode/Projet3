@@ -12,7 +12,7 @@
 
     <!-- Adicione aqui links para outras folhas de estilo necessárias -->
 </head>
-<body>
+<body class="login-page">
     <header>
         <h1>Sophie Bluel <span>Architecte d'intérieur</span></h1>
         <nav>
@@ -23,26 +23,38 @@
                 <li><a href="login.html">login</a></li>
     
     
-                <li><img src="./assets/icons/instagram.png" alt="Instagram"></li>
+                <li class="logoinstagram"><img src="./assets/icons/instagram.png" alt="Instagram"></li>
             </ul>
         </nav>
     </header> 
 
     <main>
+
         <div id="login-container">
 
-            <div id="error-message"></div>
+           <h2 class="textelogin">Log In</h2>
 
             <form id="loginForm">
-                <label for="username">Nom d'utilisateur:</label>
-                <input type="text" id="username" placeholder="Entrez votre nom d'utilisateur">
-                <label for="password">Mot de passe:</label>
+
+                <label for="username">E-mail</label>
+                <input type="text" id="username" placeholder="Entrez votre e-mail">
+                <label for="password">Mot de passe</label>
                 <input type="password" id="password" placeholder="Entrez votre mot de passe">
-                <button type="submit">Connexion</button>
+
+                <div id="error-message"></div>
+
+                <button type="submit">Se connecter</button>
+
             </form>
+            <div class="password-reset">
+                <a href="" class="mpoublie">Mot de passe oublié</a>
+            </div>
         </div>
+
     </main>
 
     <script src="assets/login.js"></script>
+
+    
 </body>
 </html>

@@ -20,7 +20,7 @@
         })
         .then(response => response.json())
         .then(data => {
-            if (data.success) {
+            if (data.token) {
                 
                 window.location.href = '/caminho_para_a_página_após_login.html'; 
             } 
