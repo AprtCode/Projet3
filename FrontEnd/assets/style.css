@@ -191,7 +191,7 @@ footer nav ul {
 
 #menu-categories {
 	display: flex;
-	justify-content: center; /* Center buttons horizontally */
+	justify-content: center; 
 	margin: 50px;
   }
   
@@ -200,13 +200,13 @@ footer nav ul {
 	font-weight: 700;
 	padding: 10px 20px;
 	margin: 5px;
-	border: 1px solid #1D6154; /* Dark green border */
-	border-radius: 60px; /* Rounded corners */
-	background-color: #fff; /* White background */
-	color: #1D6154; /* Dark green text */
-	cursor: pointer; /* Hand cursor on hover */
-	outline: none; /* Remove outline */
-	transition: background-color 0.3s, color 0.3s; /* Smooth background and text color change */
+	border: 1px solid #1D6154; 
+	border-radius: 60px; 
+	background-color: #fff;
+	color: #1D6154; 
+	cursor: pointer;
+	outline: none; 
+	transition: background-color 0.3s, color 0.3s;
   }
   
   .filtre-categorie:hover {
@@ -241,14 +241,13 @@ main {
   }
 
   
-.logoinstagram {
-	width: 10px !important;
+.logoinstagram img {
+	width: 10px;
   }
 
-.login-container {
+#login-container {
 	display: flex;
     width: 100%; 
-    max-width: 379px;
     flex-direction: column;
     align-items: center;
     margin: auto; 
@@ -274,7 +273,6 @@ input[type="password"] {
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
     box-sizing: border-box;
     border: none;
-	
 }
 
 
@@ -305,13 +303,16 @@ button[type="submit"] {
 .mpoublie {
     text-decoration: underline;
     color: inherit; 
-    
+}
+
+.logout {
+	display: none;
 }
 
 
 
 /* Media Qweries */
-
+/* 
 @media (min-width: 768px) {
     .login-container {
         width: 50%;
@@ -334,4 +335,4 @@ button[type="submit"] {
     .login-container {
         width: 20%; 
     }
-}
+} */

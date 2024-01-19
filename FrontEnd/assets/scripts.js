@@ -94,6 +94,26 @@ function filtrerProjetsParCategorie(categorie) {
 
 
 }
+// Fonction logout
+function logOut() { // jai cree la fonction...
+  localStorage.removeItem("token") //fonction pour vider localstorage
+  location.reload() //rechage la page
+}
 
+// Verifie si le tolken est present dans le localstorage
+const token = localStorage.getItem("token")
 
+if(token.length > 20 && typeof token === "string")
+{
+  const login = document.querySelector(".login")
+  const logout = document.querySelector(".logout")
+  login.style.display = "none"
+  logout.style.display = "block"
 
+  const modifier = document.querySelector(".modifier")
+  modifier.innerHTML = "Modifier"
+
+  logout.addEventListener("click",() => {
+    logOut() //...je appelle la fonction
+  })
+}

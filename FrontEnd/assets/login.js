@@ -18,15 +18,21 @@
             },
             body: JSON.stringify({ email:username, password:password }),
         })
+        
         .then(response => response.json())
         .then(data => {
+
             if (data.token) {
                 
-                window.location.href = '/caminho_para_a_página_após_login.html'; 
+        localStorage.setItem("token", data.token)
+        window.location="index.html"
+
             } 
+
             else {
             errorMessage.textContent ='Identifiant incorrecte'; 
             }
+
         })
 
         .catch(error => {
@@ -36,8 +42,6 @@
             }
         });
         }
-
-
 
         
     });
