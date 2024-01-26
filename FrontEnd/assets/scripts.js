@@ -110,8 +110,8 @@ if(token.length > 20 && typeof token === "string")
   login.style.display = "none"
   logout.style.display = "block"
 
-  const modifier = document.querySelector(".modifier")
-  modifier.innerHTML = "Modifier"
+  const modal1 = document.querySelector(".js-modal")
+  modal1.innerHTML = "Modifier"
 
   logout.addEventListener("click",() => {
     logOut() //...je appelle la fonction
