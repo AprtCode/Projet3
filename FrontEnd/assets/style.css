@@ -317,30 +317,130 @@ button[type="submit"] {
 /* Modale */
 
 .modal {
-	display: none;
+	justify-content: center;
+	align-items: center;
+	display: flex;
 	position: fixed;
-	top 0;
+	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
-	background: black rgba(0, 0, 0, 0.8);
+	background: rgba(0, 0, 0, 0.8);
 }
 
 .modal-wrapper {
-	width: 600px;
-	max-width: calc(100vh - 20px);
+	width: 630px;
+	height: 688px;
+	max-width: calc(100vh - 40px);
 	max-height: calc(100vh - 20px);
-	padding: 20px;
+	padding: 24px 14px;
 	background-color: #fff;
+	border-radius: 16px;
+	position: relative;
+	
 }
 
+.js-modal-close {
+	top: 30px; 
+    right: 30px; 
+    background-color: transparent;
+	color: black;
+    border: none;
+    font-size: 20px; 
+	cursor: pointer;
+	position: absolute;
+}
 
+.js-modal-back {
+	top: 30px; 
+    right: 30px; 
+    background-color: transparent;
+	color: black;
+    border: none;
+    font-size: 20px; 
+	cursor: pointer;
+}
 
+.modal-wrapper h3 {
+	text-align: center;
+	font-size: 26px;
+	margin-top: 30px;
+	 
+}
 
+.gallery-modal {
+	padding: 40px 30px 30px 30px;
+	width: 100%;
+	max-width: 80%;
+	display: grid;
+	grid-template-columns: repeat(5, 1fr);
+	grid-gap: 20px 10px; 
+	margin: 0 auto;
+	box-sizing: border-box;
+}
 
+.gallery-modal img {
+	width: 100%;
+	height: auto;
+	box-sizing: border-box;
+}
 
+.photoplus-container {
+	display: flex;
+    justify-content: center;
+    width: 420px; 
+    border-top: 1px solid #B3B3B3;
+    color: #B3B3B3;
+    margin: 50px auto;
+	
+}
 
+.js-modal-photoplus {
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 237px;
+    height: 36px;
+    border-radius: 60px;
+    background: #1D6154;
+    color: #fff;
+    margin: 40px;
+    border: none;
+    padding: 0; 
+    text-align: center; 
+    cursor: pointer; 
+	font-family: 'Syne';
+	font-weight: 700;
+}
 
+figure {
+	position: relative;
+	display: inline-block;
+  }
+  
+  .delete-icon {
+	width: 17px;
+	height: 17px;
+	font-size: 12px;
+	position: absolute;
+	top: 5px;
+	right: 5px;
+	background: rgba(0, 0, 0, 0.6); 
+	color: white;
+	border: none;
+	border-radius: 2px;
+	cursor: pointer;
+	font-size: 10px;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 0;
+  }
+  
+  .delete-icon i {
+	padding: 5px;
+  }
 
 /* Media Qweries */
 /* 
