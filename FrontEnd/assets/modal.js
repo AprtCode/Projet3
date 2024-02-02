@@ -1,3 +1,4 @@
+const modal = document.querySelector("#modal1")
 
 const openModal = function (e) {
      e.preventDefault()
@@ -8,8 +9,8 @@ const openModal = function (e) {
      modal = target
      modal.style.display = "block"
      modal.addEventListener("click", closeModal)
-     modal.querySelector("js-modal-close").addEventListener("click", closeModal)
-     modal.querySelector("js-modal-stop").addEventListener("click", stopPropagation)
+     modal.querySelector(".js-modal-close").addEventListener("click", closeModal)
+     
 }
 
 const closeModal = function (e) {
@@ -20,8 +21,8 @@ const closeModal = function (e) {
     modal.removeAttribute("aria-modal")
     modal.removeEventListener("click", closeModal)
     modal.querySelector(".js-modal-close").removeEventListener("click", closeModal)
-    modal.querySelector(".js-modal-stop").removeEventListener("click", stopPropagation)
     modal = null
+    console.log("test")
 }
 
 const stopPropagation = function (e) {
