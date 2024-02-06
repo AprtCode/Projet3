@@ -319,13 +319,14 @@ button[type="submit"] {
 .modal {
 	justify-content: center;
 	align-items: center;
-	display: flex;
+	display: none;
 	position: fixed;
 	top: 0;
 	left: 0;
 	width: 100%;
 	height: 100%;
 	background: rgba(0, 0, 0, 0.8);
+	z-index: 2;
 }
 
 .modal-wrapper {
@@ -337,7 +338,8 @@ button[type="submit"] {
 	background-color: #fff;
 	border-radius: 16px;
 	position: relative;
-	
+	margin: 100px auto;
+
 }
 
 .js-modal-close {
@@ -419,7 +421,7 @@ figure {
 	display: inline-block;
   }
   
-  .delete-icon {
+.delete-icon {
 	width: 17px;
 	height: 17px;
 	font-size: 12px;
@@ -438,10 +440,51 @@ figure {
 	padding: 0;
   }
   
-  .delete-icon i {
+.delete-icon i {
 	padding: 5px;
   }
 
+
+
+/* modal photo */
+
+.modal2 {
+	display: none;
+	justify-content: center;
+	align-items: center;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+	background: rgba(0, 0, 0, 0.8);
+	z-index: 2;
+}
+
+.modal2-wrapper {
+	display: none;
+	width: 630px;
+	height: 688px;
+	max-width: calc(100vh - 40px);
+	max-height: calc(100vh - 20px);
+	padding: 24px 14px;
+	background-color: #fff;
+	border-radius: 16px;
+	position: relative;
+	margin: 100px auto;
+
+}
+
+.js-modal2-close  {
+	display: none;
+}
+
+.js-modal-valider {
+	display: none;
+}
+
+
+  
 /* Media Qweries */
 /* 
 @media (min-width: 768px) {

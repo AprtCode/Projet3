@@ -1,4 +1,4 @@
-const modal = document.querySelector("#modal1")
+
 
 const openModal = function (e) {
      e.preventDefault()
@@ -8,21 +8,18 @@ const openModal = function (e) {
      target.setAttribute("aria-modal", "true")
      modal = target
      modal.style.display = "block"
-     modal.addEventListener("click", closeModal)
      modal.querySelector(".js-modal-close").addEventListener("click", closeModal)
      
 }
 
 const closeModal = function (e) {
+    const modal = document.querySelector("#modal1")
     if (modal === null) return
     e.preventDefault()
     modal.style.display = "none"
     modal.setAttribute("aria-hidden", "true")
     modal.removeAttribute("aria-modal")
-    modal.removeEventListener("click", closeModal)
     modal.querySelector(".js-modal-close").removeEventListener("click", closeModal)
-    modal = null
-    console.log("test")
 }
 
 const stopPropagation = function (e) {
@@ -42,25 +39,28 @@ window.addEventListener("keydown", function (e) {
 
 // charger photos banque donees and delete
 
-function afficherGalerie(projets) {
-    const galerie = document.querySelector('.gallery-modal');
-    galerie.innerHTML = ''; // Limpa a galeria
+function afficherGalerieModale(projets) {
+    const galerie = document.querySelector('.gallery-modal')
+    galerie.innerHTML = '' // Limpa a galeria
   
     
     projets.forEach(projet => {
-      const figure = document.createElement('figure');
-      const img = document.createElement('img');
-      const figcaption = document.createElement('figcaption');
-      const deleteButton = document.createElement('button'); // Botão de deletar
+      const figure = document.createElement('figure')
+      const img = document.createElement('img')
+      const figcaption = document.createElement('figcaption')
+      const deleteButton = document.createElement('button') // Botão de deletar
   
-      img.src = projet.imageUrl;
-      img.alt = projet.name;
-      figcaption.textContent = projet.name;
+      img.src = projet.imageUrl
+      img.alt = projet.name
+      figcaption.textContent = projet.name
   
       // Config delete
-      deleteButton.innerHTML = '<i class="fas fa-trash"></i>'; // icone FontAwesome
-      deleteButton.classList.add('delete-icon'); // add class
-      deleteButton.onclick = function() { deleteImage(figure, projet.id); };
+      deleteButton.innerHTML = '<i class="fas fa-trash"></i>' // icone FontAwesome
+      deleteButton.classList.add('delete-icon') // add class
+      deleteButton.addEventListener('click', event => {
+        event.preventDefault()
+        deleteImage(figure, projet.id)
+      } )
   
       figure.appendChild(img);
       figure.appendChild(figcaption);
@@ -69,10 +69,38 @@ function afficherGalerie(projets) {
     });
   }
   
-  function deleteImage(figure, id) {
-    
-    console.log(`Deletar imagem com ID: ${id}`); 
+function getAuthorization() {
+    if (localStorage.getItem('token')) {
+        const token = localStorage.getItem('token');
+        return 'Bearer ' + token;
+    } else {
+        return false;
+    }
+
+}
+
+function deleteImage(figure, id) {
+  let text = "Voulez-vous supprimer cet projet ?"
+  if(confirm(text) == true) {
+  const deleteUrl = "http://localhost:5678/api/works/" + id
+  fetch(deleteUrl, {
+    method: "DELETE",
+    headers: {
+        'Accept': 'application/json',
+        'Authorization': getAuthorization(), //   token
+        'Content-Type': 'application/json',
+    },
+    params: {
+        'id': id
+    },
+
+
+  })
+  }  
+
   
     figure.remove();
   }
 
+  
+  

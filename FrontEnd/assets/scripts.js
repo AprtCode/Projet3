@@ -5,7 +5,8 @@ document.addEventListener('DOMContentLoaded', function() {
   fetch('http://localhost:5678/api/works')
     .then(response => response.json()) // convertit la réponse en JSON
     .then(projects => {        
-      afficherGalerie(projects)       
+      afficherGalerie(projects)
+      afficherGalerieModale(projects)       
     })
     .catch(error => {
       console.error('Échec de la récupération des projets:', error);
