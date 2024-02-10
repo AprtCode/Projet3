@@ -366,7 +366,7 @@ button[type="submit"] {
 .modal-wrapper h3 {
 	text-align: center;
 	font-size: 26px;
-	margin-top: 30px;
+	margin-top: 45px;
 	 
 }
 
@@ -461,7 +461,7 @@ figure {
 	z-index: 2;
 }
 
-.modal2-wrapper {
+/* .modal2-wrapper {
 	display: none;
 	width: 630px;
 	height: 688px;
@@ -473,16 +473,94 @@ figure {
 	position: relative;
 	margin: 100px auto;
 
-}
+} */
 
-.js-modal2-close  {
-	display: none;
+.js-modal2-close {
+	top: 30px; 
+    right: 30px; 
+    background-color: transparent;
+	color: black;
+    border: none;
+    font-size: 20px; 
+	cursor: pointer;
+	position: absolute;
 }
 
 .js-modal-valider {
-	display: none;
+	display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 237px;
+    height: 36px;
+    border-radius: 60px;
+    background: #1D6154;
+    color: #fff;
+    margin: 40px;
+    border: none;
+    padding: 0; 
+    text-align: center; 
+    cursor: pointer; 
+	font-family: 'Syne';
+	font-weight: 700;
 }
 
+.photoplus-container2 {
+	display: flex;
+    justify-content: center;
+    width: 420px; 
+    border-top: 1px solid #B3B3B3;
+    color: #B3B3B3;
+    margin: 50px auto;
+}
+
+.upload-container {
+	background-color: rgba(232, 241, 246, 1);
+    width: 420px;
+    height: 169px;
+    display: block;
+	margin: 50px auto;
+	border-radius: 10px;
+	text-align: center;
+    padding-top: 10px;    
+}
+
+
+
+.fa-regular.fa-image {
+	color: rgba(203, 214, 220, 1);
+    font-size: 59px;
+    display: inline-block;
+    margin: 10px auto;
+    vertical-align: middle;
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 8px 16px;
+    cursor: pointer;
+    background-color: rgba(203, 214, 220, 1);
+    border-radius: 50px;
+    font-family: 'Syne', sans-serif; 
+    font-size: 14px;
+    margin: 10px auto;
+    width: 173px; 
+    height: 36px;
+    line-height: 36px;
+    text-align: center;
+} 
+
+#photoUpload {
+    display: none;
+}
+
+#photoTitle {
+    /* Estilos para o input de título */
+}
+
+#photoCategory {
+    /* Estilos para o select de categoria */
+}
 
   
 /* Media Qweries */

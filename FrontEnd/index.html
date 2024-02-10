@@ -50,7 +50,7 @@
 
 					<div class="modal-wrapper">
 
-						<button class="js-modal-close">X</button>
+						<button class="js-modal-close"><i class="fa-solid fa-xmark"></i></button>
 						
 						<h3>Galerie photo</h3>
 						
@@ -71,21 +71,40 @@
 				
 				<a href="#modal2" class="js-modal2"></a>
 
-				<aside id="modal2" class="modalphoto" aria-hidden="true" role="dialog">
+				<aside id="modal2" class="modal" aria-hidden="true" role="dialog">
 
-					<div class="modal2-wrapper">
+					<div class="modal-wrapper">
 
-						<button class="js-modal2-close">X</button>
+						<button class="js-modal2-close"><i class="fa-solid fa-xmark"></i></button>
 						
-						<!-- <h3>Ajouter Photo</h3> -->
+						<h3>Ajout Photo</h3>
 						
-						<!-- <div class="gallery-photo"> -->
+						<div class="upload-container">
+							<div class="detailprevew">
 
+								<i class="fa-regular fa-image"></i>
+
+												
+								<label for="photoUpload" class="custom-file-upload">
 								
-						</div>
+								
+								+ Ajouter photo
+								</label>
 
+								<input type="file" id="photoUpload" accept=".jpg, .png" />
+								<span>text</span>
+							</div>
+						</div>
+						<label for="photoTitle">Titre</label>
+						<input type="text" id="photoTitle"/>
+						<label for="photoCategory">Categories</label>
+						<select id="photoCategory">
+
+						</select>
+						
+						
 						<div class="photoplus-container2">
-								<button class="js-modal-valider">Valider</button>
+							<button class="js-modal-valider">Valider</button>
 						</div>
 						
 					</div>
