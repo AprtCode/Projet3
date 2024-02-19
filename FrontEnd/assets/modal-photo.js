@@ -94,6 +94,7 @@ uploadInput.addEventListener('change', function(event) {
     afficheImage()
 })
 
+
 function afficheImage() {
     const reader = new FileReader()
     const image = new Image() 

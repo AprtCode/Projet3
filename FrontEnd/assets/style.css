@@ -339,6 +339,9 @@ button[type="submit"] {
 	border-radius: 16px;
 	position: relative;
 	margin: 100px auto;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
 
 }
 
@@ -515,52 +518,92 @@ figure {
 }
 
 .upload-container {
-	background-color: rgba(232, 241, 246, 1);
-    width: 420px;
+	width: 420px;
     height: 169px;
-    display: block;
-	margin: 50px auto;
+	background-color: rgba(232, 241, 246, 1);
 	border-radius: 10px;
-	text-align: center;
-    padding-top: 10px;    
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 50px auto;     
 }
 
-
-
 .fa-regular.fa-image {
-	color: rgba(203, 214, 220, 1);
-    font-size: 59px;
-    display: inline-block;
-    margin: 10px auto;
-    vertical-align: middle;
+	color: rgba(185, 197, 204, 1);
+	margin: 0 auto; 
+    font-size: 76px;
+   
 }
 
 .custom-file-upload {
     display: inline-block;
-    padding: 8px 16px;
+    padding: 0px 0px;
     cursor: pointer;
+	color:rgba(48, 102, 133, 1);
     background-color: rgba(203, 214, 220, 1);
     border-radius: 50px;
-    font-family: 'Syne', sans-serif; 
+    font-family: Work Sans; 
     font-size: 14px;
     margin: 10px auto;
     width: 173px; 
     height: 36px;
     line-height: 36px;
     text-align: center;
+	margin: 5px 0;
 } 
+
+.img-description {
+    margin-top: 4px;
+    text-align: center;
+    color: #000;
+	font-size: 10px;
+}
+
+.detailPreview {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+}
 
 #photoUpload {
     display: none;
 }
 
 #photoTitle {
-    /* Estilos para o input de título */
+    max-width: 100%;
+	width: 420px;
+	height: 51px;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+    padding: 8px 10px; 
+    margin-bottom: 20px;
+    font-family: 'Work Sans', sans-serif;
+    font-size: 14px;
+    color: black;
 }
 
 #photoCategory {
-    /* Estilos para o select de categoria */
+	-webkit-appearance: none; /* Remove a aparência padrão no Chrome e Safari */
+    -moz-appearance: none; /* Remove a aparência padrão no Firefox */
+    appearance: none; /* Remove a aparência padrão */
+    background-color: #fff; /* Fundo branco, ou ajuste conforme necessário */
+    background-image: url('path/to/your/dropdown-icon.svg'); /* Ícone de seta para baixo */
+    background-repeat: no-repeat;
+    background-position: right 10px center; /* Posiciona o ícone no lado direito */
+    background-size: 12px; /* Ajuste conforme o tamanho do ícone */
+	
+	max-width: 100%;
+	width: 420px;
+	height: 51px;
+	box-shadow: 0px 4px 14px 0px rgba(0, 0, 0, 0.09);
+    padding: 10px; 
+    margin-bottom: 20px;    
+    font-family: 'Work Sans', sans-serif;
+
+	
 }
+
 
   
 /* Media Qweries */
