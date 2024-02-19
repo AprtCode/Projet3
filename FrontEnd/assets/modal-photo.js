@@ -1,4 +1,9 @@
 
+const title = document.querySelector('#photoTitle')
+const category = document.querySelector('#photoCategory')
+const file = document.querySelector('#photoUpload')
+const submit = document.querySelector('.js-modal-valider')
+
 // Função para abrir a Modal 2
 function openModalPhoto() {
     const modal2 = document.querySelector('#modal2');
@@ -32,9 +37,15 @@ function loadCategories() {
     fetch('http://localhost:5678/api/categories')
         .then(response => response.json())
         .then(categories => {
-            const select = document.getElementById('photoCategory');
+
+// Creation option vide pour selectioner categorie
+            const select = document.getElementById('photoCategory')
+            let emptyOption = document.createElement('option')
+            select.appendChild(emptyOption);
+
+
             categories.forEach(category => {
-                const option = document.createElement('option');
+                const option = document.createElement('option')
                 option.value = category.id;
                 option.textContent = category.name;
                 select.appendChild(option);
@@ -99,16 +110,18 @@ function afficheImage() {
     const reader = new FileReader()
     const image = new Image() 
     const fileName = uploadInput.files[0].name
-    const imagePreview = document.querySelector('imagePreview')
+    const imagePreview = document.querySelector('.imagePreview')
+    const detailPreview = document.querySelector('.detailPreview')
     reader.onload = event => {
         image.src = event.target.result
         image.alt = fileName.split('.')[0]  
     }
-    console.log(image)
-reader.readAsDataURL(uploadInput.files[0])
-imagePreview.innerHTML(image)
-
+    reader.readAsDataURL(uploadInput.files[0])
+    console.log(imagePreview)
+    imagePreview.appendChild(image)
+    detailPreview.style.display = 'none'
 }
+
 
 // Adiciona os event listeners
 document.addEventListener('DOMContentLoaded', function() {
@@ -118,3 +131,25 @@ document.addEventListener('DOMContentLoaded', function() {
         submitForm()
     });
 });
+
+function verifValidityForm() {
+    const titleValue = title.value
+    const categoryValue = category.value
+    const fileValue = file.files[0]
+    if (titleValue != '' && categoryValue != '' && fileValue){
+        submit.style.backgroundColor = '#1D6154'
+        return true
+    } else {
+        submit.style.backgroundColor = '#A7A7A7'
+        return false
+    }
+}
+
+title.addEventListener('input', (event) => {
+    verifValidityForm()
+})
+
+category.addEventListener('change', (event) => {
+    verifValidityForm()
+})
+
