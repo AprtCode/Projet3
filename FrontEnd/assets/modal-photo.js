@@ -4,7 +4,7 @@ const category = document.querySelector('#photoCategory')
 const file = document.querySelector('#photoUpload')
 const submit = document.querySelector('.js-modal-valider')
 
-// Função para abrir a Modal 2
+// ouvre la modale
 function openModalPhoto() {
     const modal2 = document.querySelector('#modal2');
     modal2.style.display = 'block';
@@ -12,7 +12,7 @@ function openModalPhoto() {
     modal2.setAttribute('aria-modal', 'true');
 }
 
-// Função para fechar a Modal 2
+// ferme la modale
 function closeModalPhoto() {
     const modal2 = document.querySelector("#modal2");
     if (!modal2) return;
@@ -21,24 +21,24 @@ function closeModalPhoto() {
     modal2.removeAttribute('aria-modal');
 }
 
-// Event listeners para botões de abrir e fechar a modal de adicionar foto
+// event listeners pour boutons ouvrir et fermer modale qui add photo
 document.querySelector('.js-modal-photoplus').addEventListener('click', function(e) {
     e.preventDefault();
     openModalPhoto();
-});
+}); 
 
 document.querySelector('.js-modal2-close').addEventListener('click', function(e) {
     e.preventDefault();
     closeModalPhoto();
 });
 
-// Função para carregar as categorias da API
+// charger categories API
 function loadCategories() {
     fetch('http://localhost:5678/api/categories')
         .then(response => response.json())
         .then(categories => {
 
-// Creation option vide pour selectioner categorie
+// option vide pour selectioner categorie
             const select = document.getElementById('photoCategory')
             let emptyOption = document.createElement('option')
             select.appendChild(emptyOption);
@@ -54,7 +54,7 @@ function loadCategories() {
         .catch(error => console.error('Error loading categories:', error));
 }
 
-// Função para tratar a submissão do formulário
+// traitement submission formulaire
 function submitForm() {
     const photoUpload = document.getElementById('photoUpload').files[0];
     const photoTitle = document.getElementById('photoTitle').value;
@@ -79,24 +79,31 @@ function submitForm() {
 
     fetch('http://localhost:5678/api/works', {
         method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        },
+        headers: new Headers({
+            'Authorization': `Bearer ${token}`,
+        }),
         body: formData
     })
+
+
     .then(response => {
         if (!response.ok) {
             throw new Error('Network response was not ok.')
         }
         return response.json()
     })
+
     .then(data => {
         console.log('Success:', data)
-        closeModalPhoto(); // Fecha a modal após o sucesso
+        closeModalPhoto() // Ferme modal si succes                    
+    
+       // Actualiser gallerie
+        updateGallery(data)
     })
-    .catch(error => {
+        .catch(error => {
         console.error('Error:', error)
-    });
+        alert('Erreur telechargement.')
+    })
 }
 
 const uploadInput = document.getElementById('photoUpload')
@@ -105,7 +112,7 @@ uploadInput.addEventListener('change', function(event) {
     afficheImage()
 })
 
-
+// affiche petite image demo
 function afficheImage() {
     const reader = new FileReader()
     const image = new Image() 
@@ -122,8 +129,7 @@ function afficheImage() {
     detailPreview.style.display = 'none'
 }
 
-
-// Adiciona os event listeners
+// event listeners validation
 document.addEventListener('DOMContentLoaded', function() {
     loadCategories()
     document.querySelector('.js-modal-valider').addEventListener('click', function(event) {
@@ -132,6 +138,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
+// si valable pour telechargement, cela ira changer la coleur du bouton
 function verifValidityForm() {
     const titleValue = title.value
     const categoryValue = category.value
@@ -153,3 +160,36 @@ category.addEventListener('change', (event) => {
     verifValidityForm()
 })
 
+
+// telecharger nouvelle photo
+function updateGallery(photoData) {
+    
+    const gallery = document.querySelector('.gallery');
+    const newImage = document.createElement('img');
+   
+    // nom image devient src
+    newImage.src = photoData.imageUrl; 
+    newImage.alt = photoData.title; 
+
+    // nouvelle image add galerie
+    gallery.appendChild(newImage);
+
+    fetch('http://localhost:5678/api/works', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${token}`
+        },
+        body: formData
+    })
+
+    .then(response => response.json())
+    .then(data => {
+        console.log('Success:', data);
+        closeModalPhoto(); // fermeture modale si succes
+        updateGallery(data); // actualiser gallerie
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Erreur telechargement.');
+    });
+}
