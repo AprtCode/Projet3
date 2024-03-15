@@ -1,11 +1,11 @@
-    const loginForm = document.getElementById('loginForm');
-    const errorMessage = document.getElementById('error-message'); 
+    const loginForm = document.getElementById('loginForm')
+    const errorMessage = document.getElementById('error-message')
 
     loginForm.addEventListener('submit', event => {
         event.preventDefault();
 
-        const username = document.getElementById('username').value;
-        const password = document.getElementById('password').value;
+        const username = document.getElementById('username').value
+        const password = document.getElementById('password').value
         if(username==="" || password===""){
         errorMessage.textContent = "Merci de remplir tous les champs."  
         }
@@ -30,15 +30,15 @@
             } 
 
             else {
-            errorMessage.textContent ='Identifiant incorrecte'; 
+            errorMessage.textContent = "Oups ! On dirait qu'il y a une petite erreur. Pouvez-vous revérifier votre identifiant ou e-mail ?"
             }
 
         })
 
         .catch(error => {
-            console.error('Erro no login:', error);
+            console.error('Erro no login:', error)
             if(errorMessage) {
-                errorMessage.textContent = 'Pas de conexion avec le serveur.';
+                errorMessage.textContent = 'Pas de conexion avec le serveur.'
             }
         });
         }

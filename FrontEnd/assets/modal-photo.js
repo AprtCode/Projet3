@@ -43,7 +43,6 @@ function loadCategories() {
             let emptyOption = document.createElement('option')
             select.appendChild(emptyOption);
 
-
             categories.forEach(category => {
                 const option = document.createElement('option')
                 option.value = category.id;
@@ -60,11 +59,6 @@ function submitForm() {
     const photoTitle = document.getElementById('photoTitle').value;
     const photoCategory = document.getElementById('photoCategory').value;
 
-    // if (!photoUpload) {
-    //     alert("Selectioner photo");
-    //     return;
-    // }
-
     const token = localStorage.getItem('token');
     if (!token) {
         console.error('No token found, user is not logged in')
@@ -73,23 +67,23 @@ function submitForm() {
     }
 
     const formData = new FormData()
-    formData.append('photo', photoUpload)
+    formData.append('image', photoUpload)
     formData.append('title', photoTitle)
     formData.append('category', photoCategory)
 
+ // console.log()
+
     fetch('http://localhost:5678/api/works', {
         method: 'POST',
-        headers: new Headers({
-            'Authorization': `Bearer ${token}`,
-        }),
+        headers: {
+            'Accept': 'application/json, text/plain, */*',
+            'Authorization': getAuthorization()
+        },
         body: formData
     })
 
-
     .then(response => {
-        if (!response.ok) {
-            throw new Error('Network response was not ok.')
-        }
+        // console.log()
         return response.json()
     })
 
@@ -99,12 +93,21 @@ function submitForm() {
     
        // Actualiser gallerie
         updateGallery(data)
+        return data
     })
-        .catch(error => {
-        console.error('Error:', error)
-        alert('Erreur telechargement.')
-    })
+        
 }
+
+function getAuthorization() {
+    if (localStorage.getItem('token')) {
+        const token = localStorage.getItem('token');
+        return 'Bearer ' + token;
+    } else {
+        return false;
+    }
+
+}
+
 
 const uploadInput = document.getElementById('photoUpload')
 
@@ -134,7 +137,14 @@ document.addEventListener('DOMContentLoaded', function() {
     loadCategories()
     document.querySelector('.js-modal-valider').addEventListener('click', function(event) {
         event.preventDefault()
-        submitForm()
+        let valide = verifValidityForm()
+        if(valide) {
+            submitForm()
+        }
+        else {
+            alert ('Merci de remplir tous les champs')
+        }
+        
     });
 });
 
@@ -150,6 +160,8 @@ function verifValidityForm() {
         submit.style.backgroundColor = '#A7A7A7'
         return false
     }
+
+
 }
 
 title.addEventListener('input', (event) => {
@@ -173,23 +185,4 @@ function updateGallery(photoData) {
 
     // nouvelle image add galerie
     gallery.appendChild(newImage);
-
-    fetch('http://localhost:5678/api/works', {
-        method: 'POST',
-        headers: {
-            'Authorization': `Bearer ${token}`
-        },
-        body: formData
-    })
-
-    .then(response => response.json())
-    .then(data => {
-        console.log('Success:', data);
-        closeModalPhoto(); // fermeture modale si succes
-        updateGallery(data); // actualiser gallerie
-    })
-    .catch(error => {
-        console.error('Error:', error);
-        alert('Erreur telechargement.');
-    });
 }

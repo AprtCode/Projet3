@@ -77,7 +77,6 @@ h1 > span {
 	font-family: 'Work Sans';
 	font-size:10px;
 	letter-spacing: 0.1em;
-;
 }
 
 h2{
@@ -187,6 +186,7 @@ footer nav ul {
 	justify-content: flex-end;
 	margin: 2em
 }
+
 /* menu buttons categories */
 
 #menu-categories {
@@ -220,8 +220,34 @@ footer nav ul {
 	color: #fff; /* White text for active */
   }
 
+.mode-edition {
+	display: none;
+	background-color: #000;
+	color: #fff;
+	display: flex;
+	height: 59px;
+	align-items: center;
+	justify-content: center;
+	gap: 10px;
+	margin-top: 0;
 
+}
 
+.bouton-modifier {
+	position: absolute;
+	color: #000;
+	font-size: 14px;
+	font-family: 'Work Sans';
+	margin-left: 20px;
+	top: 10px;
+}
+
+#portfolio h2 {
+	position: relative;
+	margin-top: 100px;
+	margin-bottom: 100px;
+
+}
 
 /* Page login */
 
@@ -233,20 +259,15 @@ footer nav ul {
     font-size: 14px;
 }
 
-/* main {
-	display: flex;
-	justify-content: center;
-	align-items: center;
-	margin: 0; 
-  } */
-
 #loginForm {
 	width: 100%;
 	max-width: 379px;
 }
   
 .logoinstagram img {
-	width: 10px;
+	all: unset;
+	width: 22px;
+	height: 22px; 
   }
 
 #login-container {
@@ -278,22 +299,25 @@ input[type="password"] {
     border: none;
 }
 
+#error-message {
+	color: red;
+	text-align: center;
+	margin-bottom: 20px;
+}
 
 button[type="submit"] {
-    display: flex;
-    justify-content: center;
-    align-items: center;
     width: 100%;
     max-width: 179px;
     height: 36px;
     border-radius: 60px;
     background: #1D6154;
     color: #fff;
-    margin-bottom: 28px;
     border: none;
-    padding: 0; 
-    text-align: center; 
-    cursor: pointer; 
+    padding: 0;
+    text-align: center;
+    cursor: pointer;
+    margin: auto; /* Adicione esta linha */
+    display: block; /* E esta também */
 }
 
 
@@ -311,6 +335,8 @@ button[type="submit"] {
 .logout {
 	display: none;
 }
+
+
 
 
 
@@ -464,20 +490,6 @@ figure {
 	z-index: 2;
 }
 
-/* .modal2-wrapper {
-	display: none;
-	width: 630px;
-	height: 688px;
-	max-width: calc(100vh - 40px);
-	max-height: calc(100vh - 20px);
-	padding: 24px 14px;
-	background-color: #fff;
-	border-radius: 16px;
-	position: relative;
-	margin: 100px auto;
-
-} */
-
 .js-modal2-close {
 	top: 30px; 
     right: 30px; 
@@ -598,29 +610,6 @@ figure {
 .imagePreview img {
 	height: 169px;
 }
+
+
   
-/* Media Qweries */
-/* 
-@media (min-width: 768px) {
-    .login-container {
-        width: 50%;
-    }
-}
-
-@media (min-width: 1024px) {
-    .login-container {
-        width: 40%; 
-    }
-}
-
-@media (min-width: 1200px) {
-    .login-container {
-        width: 30%; 
-    }
-}
-
-@media (min-width: 1900px) {
-    .login-container {
-        width: 20%; 
-    }
-} */

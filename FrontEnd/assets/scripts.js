@@ -25,6 +25,7 @@ document.addEventListener('DOMContentLoaded', function() {
 // Fonction pour afficher les projets
   
 function afficherGalerie(projets) {
+  console.log(projets)
   const galerie = document.querySelector('.gallery');
   galerie.innerHTML = ''; // Nettoie la galerie
 
@@ -35,8 +36,8 @@ function afficherGalerie(projets) {
     const figcaption = document.createElement('figcaption');
 
     img.src = projet.imageUrl; 
-    img.alt = projet.name; 
-    figcaption.textContent = projet.name; 
+    img.alt = projet.title; 
+    figcaption.textContent = projet.title; 
 
     figure.appendChild(img);
     figure.appendChild(figcaption);
@@ -106,13 +107,16 @@ const token = localStorage.getItem("token")
 
 if(token.length > 20 && typeof token === "string")
 {
+  const filtres = document.querySelector("#menu-categories")
+  filtres.style.display = "none"
+
   const login = document.querySelector(".login")
   const logout = document.querySelector(".logout")
   login.style.display = "none"
   logout.style.display = "block"
 
-  const modal1 = document.querySelector(".js-modal")
-  modal1.innerHTML = "Modifier"
+  const boutonModifier = document.querySelector(".bouton-modifier")
+  boutonModifier.innerHTML = '<i class="fas fa-edit"></i> Modifier'
 
   logout.addEventListener("click",() => {
     logOut() //...je appelle la fonction
