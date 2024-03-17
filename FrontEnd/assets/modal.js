@@ -26,10 +26,13 @@ const stopPropagation = function (e) {
     e.stopPropagation()
 }
 
-document.querySelectorAll(".js-modal").forEach(a => {
-    a.addEventListener("click", openModal)
+// document.querySelectorAll(".js-modal").forEach(a => {
+//     a.addEventListener("click", openModal)
     
-})
+// })
+
+const boutonModifier = document.querySelector(".bouton-modifier")
+boutonModifier.addEventListener("click", openModal)
 
 window.addEventListener("keydown", function (e) {
     console.log(e.key)

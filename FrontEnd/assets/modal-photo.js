@@ -27,6 +27,11 @@ document.querySelector('.js-modal-photoplus').addEventListener('click', function
     openModalPhoto();
 }); 
 
+document.querySelector('.js-modal2-return').addEventListener('click', function(e) {
+    e.preventDefault();
+    closeModalPhoto();
+});
+
 document.querySelector('.js-modal2-close').addEventListener('click', function(e) {
     e.preventDefault();
     closeModalPhoto();

@@ -224,7 +224,6 @@ footer nav ul {
 	display: none;
 	background-color: #000;
 	color: #fff;
-	display: flex;
 	height: 59px;
 	align-items: center;
 	justify-content: center;
@@ -240,6 +239,7 @@ footer nav ul {
 	font-family: 'Work Sans';
 	margin-left: 20px;
 	top: 10px;
+	cursor: pointer;
 }
 
 #portfolio h2 {
@@ -488,6 +488,17 @@ figure {
 	height: 100%;
 	background: rgba(0, 0, 0, 0.8);
 	z-index: 2;
+}
+
+.js-modal2-return {
+	top: 30px;
+    left: 30px;
+    background-color: transparent;
+	color: black;
+    border: none;
+    font-size: 20px;
+	cursor: pointer;
+	position: absolute;
 }
 
 .js-modal2-close {

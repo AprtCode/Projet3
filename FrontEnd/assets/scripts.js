@@ -97,7 +97,7 @@ function filtrerProjetsParCategorie(categorie) {
 
 }
 // Fonction logout
-function logOut() { // jai cree la fonction...
+function logOut() { // j'ai cree la fonction...
   localStorage.removeItem("token") //fonction pour vider localstorage
   location.reload() //rechage la page
 }
@@ -118,7 +118,10 @@ if(token.length > 20 && typeof token === "string")
   const boutonModifier = document.querySelector(".bouton-modifier")
   boutonModifier.innerHTML = '<i class="fas fa-edit"></i> Modifier'
 
+  const modeEdition = document.querySelector(".mode-edition")
+  modeEdition.style.display = "flex"
+
   logout.addEventListener("click",() => {
-    logOut() //...je appelle la fonction
+    logOut() //...J'appelle la fonction
   })
 }
