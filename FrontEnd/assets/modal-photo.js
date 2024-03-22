@@ -1,4 +1,3 @@
-
 const title = document.querySelector('#photoTitle')
 const category = document.querySelector('#photoCategory')
 const file = document.querySelector('#photoUpload')
@@ -8,17 +7,32 @@ const submit = document.querySelector('.js-modal-valider')
 function openModalPhoto() {
     const modal2 = document.querySelector('#modal2');
     modal2.style.display = 'block';
+    modal2.style.backgroundColor = 'transparent'
     modal2.removeAttribute('aria-hidden');
     modal2.setAttribute('aria-modal', 'true');
 }
 
-// ferme la modale
+// retourne sur la modal photo
 function closeModalPhoto() {
     const modal2 = document.querySelector("#modal2");
     if (!modal2) return;
     modal2.style.display = 'none';
     modal2.setAttribute('aria-hidden', 'true');
     modal2.removeAttribute('aria-modal');
+}
+
+// ferme les deux modales
+function closeAllModal() {
+    const modal = document.querySelector("#modal1")
+    if (modal === null) return
+    modal.style.display = "none"
+    modal.setAttribute("aria-hidden", "true")
+    modal.removeAttribute("aria-modal")
+    const modal2 = document.querySelector("#modal2");
+    if (!modal2) return;
+    modal2.style.display = 'none';
+    modal2.setAttribute('aria-hidden', 'true');
+    modal2.removeAttribute('aria-modal');    
 }
 
 // event listeners pour boutons ouvrir et fermer modale qui add photo
@@ -34,7 +48,7 @@ document.querySelector('.js-modal2-return').addEventListener('click', function(e
 
 document.querySelector('.js-modal2-close').addEventListener('click', function(e) {
     e.preventDefault();
-    closeModalPhoto();
+    closeAllModal();
 });
 
 // charger categories API
