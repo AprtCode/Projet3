@@ -1,44 +1,40 @@
 
- // Code exécuté une fois que la page est chargée
+// Code exécuté une fois que la page est chargée
 document.addEventListener('DOMContentLoaded', function() {
   // Récupération des projets
   fetch('http://localhost:5678/api/works')
-    .then(response => response.json()) // convertit la réponse en JSON
-    .then(projects => {        
-      afficherGalerie(projects)
-      afficherGalerieModale(projects)       
-    })
-    .catch(error => {
-      console.error('Échec de la récupération des projets:', error);
-    });
+  .then(response => response.json()) // convertit la réponse en JSON
+  .then(projects => {        
+    afficherGalerie(projects)
+    afficherGalerieModale(projects)       
+  })
+  .catch(error => {
+    console.error('Échec de la récupération des projets:', error);
+  });
   // Récupération des catégories
   fetch('http://localhost:5678/api/categories')
-    .then(response => response.json()) // convertit la réponse en JSON
-    .then(categories => {        
-      afficherCategories(categories)      
-    })
-    .catch(error => {
-      console.error('Échec de la récupération des catégories:', error);
-    });
+  .then(response => response.json()) // convertit la réponse en JSON
+  .then(categories => {        
+    afficherCategories(categories)      
+  })
+  .catch(error => {
+    console.error('Échec de la récupération des catégories:', error);
+  });
 })
 
 // Fonction pour afficher les projets
-  
 function afficherGalerie(projets) {
-  console.log(projets)
-  const galerie = document.querySelector('.gallery');
-  galerie.innerHTML = ''; // Nettoie la galerie
+  const galerie = document.querySelector('.gallery')
+  galerie.innerHTML = '' // Nettoie la galerie
 
   // Boucle sur tous les projets
   projets.forEach(projet => {
     const figure = document.createElement('figure');
     const img = document.createElement('img');
     const figcaption = document.createElement('figcaption');
-
     img.src = projet.imageUrl; 
     img.alt = projet.title; 
     figcaption.textContent = projet.title; 
-
     figure.appendChild(img);
     figure.appendChild(figcaption);
     galerie.appendChild(figure);
@@ -84,17 +80,15 @@ function afficherCategories(categories) {
 // Fonction pour filtrer après un click sur une cétégorie
 function filtrerProjetsParCategorie(categorie) {
   fetch('http://localhost:5678/api/works')
-    .then(response => response.json()) 
-    .then(works => {  
-      const worksFilter = works.filter(function(results){
-        return results.category.name === categorie
-      }) 
-      afficherGalerie(worksFilter) 
-    })    
+  .then(response => response.json()) 
+  .then(works => {  
+    const worksFilter = works.filter(function(results){
+      return results.category.name === categorie
+    }) 
+    afficherGalerie(worksFilter) 
+  })    
   // Les filtrer selon le nom de categorie passé en parametre
   // Appeler la fonction afficherGalerie avec en parametre les projets filtrés
-
-
 }
 // Fonction logout
 function logOut() { // j'ai cree la fonction...

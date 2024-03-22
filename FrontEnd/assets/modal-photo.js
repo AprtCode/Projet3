@@ -1,3 +1,4 @@
+
 const title = document.querySelector('#photoTitle')
 const category = document.querySelector('#photoCategory')
 const file = document.querySelector('#photoUpload')
@@ -7,32 +8,17 @@ const submit = document.querySelector('.js-modal-valider')
 function openModalPhoto() {
     const modal2 = document.querySelector('#modal2');
     modal2.style.display = 'block';
-    modal2.style.backgroundColor = 'transparent'
     modal2.removeAttribute('aria-hidden');
     modal2.setAttribute('aria-modal', 'true');
 }
 
-// retourne sur la modal photo
+// ferme la modale
 function closeModalPhoto() {
     const modal2 = document.querySelector("#modal2");
     if (!modal2) return;
     modal2.style.display = 'none';
-    modal2.setAttribute('aria-hidden', 'true');
+    modal2.setAttribute('aria-hidden', 'true')
     modal2.removeAttribute('aria-modal');
-}
-
-// ferme les deux modales
-function closeAllModal() {
-    const modal = document.querySelector("#modal1")
-    if (modal === null) return
-    modal.style.display = "none"
-    modal.setAttribute("aria-hidden", "true")
-    modal.removeAttribute("aria-modal")
-    const modal2 = document.querySelector("#modal2");
-    if (!modal2) return;
-    modal2.style.display = 'none';
-    modal2.setAttribute('aria-hidden', 'true');
-    modal2.removeAttribute('aria-modal');    
 }
 
 // event listeners pour boutons ouvrir et fermer modale qui add photo
@@ -48,35 +34,35 @@ document.querySelector('.js-modal2-return').addEventListener('click', function(e
 
 document.querySelector('.js-modal2-close').addEventListener('click', function(e) {
     e.preventDefault();
-    closeAllModal();
+    closeModalPhoto();
 });
 
 // charger categories API
 function loadCategories() {
     fetch('http://localhost:5678/api/categories')
-        .then(response => response.json())
-        .then(categories => {
+    .then(response => response.json())
+    .then(categories => {
 
-// option vide pour selectioner categorie
-            const select = document.getElementById('photoCategory')
-            let emptyOption = document.createElement('option')
-            select.appendChild(emptyOption);
+        // option vide pour selectioner categorie
+        const select = document.getElementById('photoCategory')
+        let emptyOption = document.createElement('option')
+        select.appendChild(emptyOption);
 
-            categories.forEach(category => {
-                const option = document.createElement('option')
-                option.value = category.id;
-                option.textContent = category.name;
-                select.appendChild(option);
-            });
-        })
-        .catch(error => console.error('Error loading categories:', error));
+        categories.forEach(category => {
+            const option = document.createElement('option')
+            option.value = category.id;
+            option.textContent = category.name;
+            select.appendChild(option);
+        });
+    })
+    .catch(error => console.error('Error loading categories:', error))
 }
 
 // traitement submission formulaire
 function submitForm() {
-    const photoUpload = document.getElementById('photoUpload').files[0];
-    const photoTitle = document.getElementById('photoTitle').value;
-    const photoCategory = document.getElementById('photoCategory').value;
+    const photoUpload = document.getElementById('photoUpload').files[0]
+    const photoTitle = document.getElementById('photoTitle').value
+    const photoCategory = document.getElementById('photoCategory').value
 
     const token = localStorage.getItem('token');
     if (!token) {
@@ -102,7 +88,6 @@ function submitForm() {
     })
 
     .then(response => {
-        // console.log()
         return response.json()
     })
 
@@ -114,19 +99,16 @@ function submitForm() {
         updateGallery(data)
         return data
     })
-        
 }
 
 function getAuthorization() {
     if (localStorage.getItem('token')) {
-        const token = localStorage.getItem('token');
-        return 'Bearer ' + token;
+        const token = localStorage.getItem('token')
+        return 'Bearer ' + token
     } else {
-        return false;
+        return false
     }
-
 }
-
 
 const uploadInput = document.getElementById('photoUpload')
 
@@ -162,10 +144,9 @@ document.addEventListener('DOMContentLoaded', function() {
         }
         else {
             alert ('Merci de remplir tous les champs')
-        }
-        
-    });
-});
+        } 
+    })
+})
 
 // si valable pour telechargement, cela ira changer la coleur du bouton
 function verifValidityForm() {
