@@ -6,35 +6,35 @@ const submit = document.querySelector('.js-modal-valider')
 
 // ouvre la modale
 function openModalPhoto() {
-    const modal2 = document.querySelector('#modal2');
-    modal2.style.display = 'block';
-    modal2.removeAttribute('aria-hidden');
-    modal2.setAttribute('aria-modal', 'true');
+    const modal2 = document.querySelector('#modal2')
+    modal2.style.display = 'block'
+    modal2.removeAttribute('aria-hidden')
+    modal2.setAttribute('aria-modal', 'true')
 }
 
 // ferme la modale
 function closeModalPhoto() {
     const modal2 = document.querySelector("#modal2");
     if (!modal2) return;
-    modal2.style.display = 'none';
+    modal2.style.display = 'none'
     modal2.setAttribute('aria-hidden', 'true')
-    modal2.removeAttribute('aria-modal');
+    modal2.removeAttribute('aria-modal')
 }
 
 // event listeners pour boutons ouvrir et fermer modale qui add photo
 document.querySelector('.js-modal-photoplus').addEventListener('click', function(e) {
-    e.preventDefault();
-    openModalPhoto();
+    e.preventDefault()
+    openModalPhoto()
 }); 
 
 document.querySelector('.js-modal2-return').addEventListener('click', function(e) {
-    e.preventDefault();
-    closeModalPhoto();
+    e.preventDefault()
+    closeModalPhoto()
 });
 
 document.querySelector('.js-modal2-close').addEventListener('click', function(e) {
-    e.preventDefault();
-    closeModalPhoto();
+    e.preventDefault()
+    closeModalPhoto()
 });
 
 // charger categories API
@@ -46,13 +46,13 @@ function loadCategories() {
         // option vide pour selectioner categorie
         const select = document.getElementById('photoCategory')
         let emptyOption = document.createElement('option')
-        select.appendChild(emptyOption);
+        select.appendChild(emptyOption)
 
         categories.forEach(category => {
             const option = document.createElement('option')
-            option.value = category.id;
-            option.textContent = category.name;
-            select.appendChild(option);
+            option.value = category.id
+            option.textContent = category.name
+            select.appendChild(option)
         });
     })
     .catch(error => console.error('Error loading categories:', error))
@@ -176,13 +176,13 @@ category.addEventListener('change', (event) => {
 // telecharger nouvelle photo
 function updateGallery(photoData) {
     
-    const gallery = document.querySelector('.gallery');
-    const newImage = document.createElement('img');
+    const gallery = document.querySelector('.gallery')
+    const newImage = document.createElement('img')
    
     // nom image devient src
-    newImage.src = photoData.imageUrl; 
-    newImage.alt = photoData.title; 
+    newImage.src = photoData.imageUrl
+    newImage.alt = photoData.title
 
     // nouvelle image add galerie
-    gallery.appendChild(newImage);
+    gallery.appendChild(newImage)
 }

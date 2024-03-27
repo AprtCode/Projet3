@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
     afficherGalerieModale(projects)       
   })
   .catch(error => {
-    console.error('Échec de la récupération des projets:', error);
+    console.error('Échec de la récupération des projets:', error)
   });
   // Récupération des catégories
   fetch('http://localhost:5678/api/categories')
@@ -18,7 +18,7 @@ document.addEventListener('DOMContentLoaded', function() {
     afficherCategories(categories)      
   })
   .catch(error => {
-    console.error('Échec de la récupération des catégories:', error);
+    console.error('Échec de la récupération des catégories:', error)
   });
 })
 
@@ -29,24 +29,24 @@ function afficherGalerie(projets) {
 
   // Boucle sur tous les projets
   projets.forEach(projet => {
-    const figure = document.createElement('figure');
-    const img = document.createElement('img');
-    const figcaption = document.createElement('figcaption');
-    img.src = projet.imageUrl; 
-    img.alt = projet.title; 
-    figcaption.textContent = projet.title; 
-    figure.appendChild(img);
-    figure.appendChild(figcaption);
-    galerie.appendChild(figure);
+    const figure = document.createElement('figure')
+    const img = document.createElement('img')
+    const figcaption = document.createElement('figcaption')
+    img.src = projet.imageUrl
+    img.alt = projet.title
+    figcaption.textContent = projet.title
+    figure.appendChild(img)
+    figure.appendChild(figcaption)
+    galerie.appendChild(figure)
   });
 }
   
 // Fonction pour afficher les catégories
 function afficherCategories(categories) {
-  const listeCategorie = document.querySelector('#menu-categories');
+  const listeCategorie = document.querySelector('#menu-categories')
 
   // Affichage du bouton "Tous"
-  const buttonCategorie = document.createElement('button');
+  const buttonCategorie = document.createElement('button')
   buttonCategorie.classList.add('filtre-categorie')
   buttonCategorie.innerText = "Tous"
   listeCategorie.appendChild(buttonCategorie)
@@ -66,7 +66,7 @@ function afficherCategories(categories) {
   // Boucle pour afficher toutes les catégories
 
   categories.forEach(categorie => {
-    const buttonCategorie = document.createElement('button');
+    const buttonCategorie = document.createElement('button')
     buttonCategorie.classList.add('filtre-categorie')
     buttonCategorie.innerText = categorie.name
     listeCategorie.appendChild(buttonCategorie)

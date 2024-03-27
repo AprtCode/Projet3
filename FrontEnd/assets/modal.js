@@ -52,18 +52,18 @@ function afficherGalerieModale(projets) {
     } )
   
     figure.appendChild(img);
-    figure.appendChild(figcaption);
-    figure.appendChild(deleteButton); // add button delete
-    galerie.appendChild(figure);
+    figure.appendChild(figcaption)
+    figure.appendChild(deleteButton) // add button delete
+    galerie.appendChild(figure)
   });
 }
   
 function getAuthorization() {
   if (localStorage.getItem('token')) {
-      const token = localStorage.getItem('token');
-      return 'Bearer ' + token;
+      const token = localStorage.getItem('token')
+      return 'Bearer ' + token
   } else {
-      return false;
+      return false
   }
 }
 
@@ -82,7 +82,7 @@ function deleteImage(figure, id) {
         'id': id
       }
     })
-    figure.remove();
+    figure.remove()
   }  
 }
 

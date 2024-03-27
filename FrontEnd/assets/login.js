@@ -33,6 +33,6 @@ loginForm.addEventListener('submit', event => {
             if(errorMessage) {
                 errorMessage.textContent = 'Pas de conexion avec le serveur.'
             }
-        });
+        })
     }
-});
+})
