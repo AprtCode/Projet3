@@ -91,7 +91,7 @@ function filtrerProjetsParCategorie(categorie) {
   // Appeler la fonction afficherGalerie avec en parametre les projets filtrés
 }
 // Fonction logout
-function logOut() { // j'ai cree la fonction...
+function logOut() {
   localStorage.removeItem("token") //fonction pour vider localstorage
   location.reload() //rechage la page
 }

@@ -77,7 +77,6 @@ function submitForm() {
     formData.append('category', photoCategory)
 
  // console.log()
-
     fetch('http://localhost:5678/api/works', {
         method: 'POST',
         headers: {
@@ -160,8 +159,6 @@ function verifValidityForm() {
         submit.style.backgroundColor = '#A7A7A7'
         return false
     }
-
-
 }
 
 title.addEventListener('input', (event) => {
