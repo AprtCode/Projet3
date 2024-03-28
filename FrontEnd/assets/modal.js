@@ -1,5 +1,3 @@
-
-
 const openModal = function (e) {
   e.preventDefault()
   const target = document.querySelector('#modal1')
@@ -82,8 +80,38 @@ function deleteImage(figure, id) {
         'id': id
       }
     })
+    console.log(figure)
     figure.remove()
+    deleteImageIndex()
   }  
+}
+
+function deleteImageIndex(){
+  fetch('http://localhost:5678/api/works')
+  .then(response => response.json()) // convertit la réponse en JSON
+  .then(projects => {     
+    afficherGalerieIndex(projects)
+    afficherGalerieModale(projects)
+  })
+}
+
+// Fonction pour afficher les projets
+function afficherGalerieIndex(projets) {
+  const galerie = document.querySelector('.gallery')
+  galerie.innerHTML = '' // Nettoie la galerie
+
+  // Boucle sur tous les projets
+  projets.forEach(projet => {
+    const figure = document.createElement('figure')
+    const img = document.createElement('img')
+    const figcaption = document.createElement('figcaption')
+    img.src = projet.imageUrl
+    img.alt = projet.title
+    figcaption.textContent = projet.title
+    figure.appendChild(img)
+    figure.appendChild(figcaption)
+    galerie.appendChild(figure)
+  });
 }
 
   

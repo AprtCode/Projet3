@@ -1,4 +1,3 @@
-
 const title = document.querySelector('#photoTitle')
 const category = document.querySelector('#photoCategory')
 const file = document.querySelector('#photoUpload')
@@ -21,6 +20,20 @@ function closeModalPhoto() {
     modal2.removeAttribute('aria-modal')
 }
 
+// ferme les deux modales
+function closeAllModal() {
+    const modal = document.querySelector("#modal1")
+    if (modal === null) return
+    modal.style.display = "none"
+    modal.setAttribute("aria-hidden", "true")
+    modal.removeAttribute("aria-modal")
+    const modal2 = document.querySelector("#modal2");
+    if (!modal2) return;
+    modal2.style.display = 'none';
+    modal2.setAttribute('aria-hidden', 'true');
+    modal2.removeAttribute('aria-modal');    
+}
+
 // event listeners pour boutons ouvrir et fermer modale qui add photo
 document.querySelector('.js-modal-photoplus').addEventListener('click', function(e) {
     e.preventDefault()
@@ -34,7 +47,7 @@ document.querySelector('.js-modal2-return').addEventListener('click', function(e
 
 document.querySelector('.js-modal2-close').addEventListener('click', function(e) {
     e.preventDefault()
-    closeModalPhoto()
+    closeAllModal();
 });
 
 // charger categories API
@@ -92,7 +105,7 @@ function submitForm() {
 
     .then(data => {
         console.log('Success:', data)
-        closeModalPhoto() // Ferme modal si succes                    
+        closeAllModal() // Ferme modal si succes                    
     
        // Actualiser gallerie
         updateGallery(data)
@@ -174,12 +187,14 @@ category.addEventListener('change', (event) => {
 function updateGallery(photoData) {
     
     const gallery = document.querySelector('.gallery')
+    const newFigure = document.createElement('figure')
+    const newFigcaption = document.createElement('figcaption')
     const newImage = document.createElement('img')
-   
-    // nom image devient src
     newImage.src = photoData.imageUrl
     newImage.alt = photoData.title
-
+    newFigcaption.textContent = photoData.title
+    newFigure.appendChild(newImage)
+    newFigure.appendChild(newFigcaption)
     // nouvelle image add galerie
-    gallery.appendChild(newImage)
+    gallery.appendChild(newFigure)
 }

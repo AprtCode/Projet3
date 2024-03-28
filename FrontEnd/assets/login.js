@@ -22,7 +22,7 @@ loginForm.addEventListener('submit', event => {
         .then(data => {
             if (data.token) {
                 localStorage.setItem("token", data.token)
-                window.location="index.html"
+                window.location="index.html" 
             } 
             else {
                 errorMessage.textContent = "Oups ! On dirait qu'il y a une petite erreur. Pouvez-vous revérifier votre identifiant ou e-mail ?"
