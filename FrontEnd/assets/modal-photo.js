@@ -106,9 +106,9 @@ function submitForm() {
     .then(data => {
         console.log('Success:', data)
         closeAllModal() // Ferme modal si succes                    
-    
-       // Actualiser gallerie
-        updateGallery(data)
+        resetForm() // Vider le formulaire de création 
+       // Actualiser les galleries
+        updateGalleries()
         return data
     })
 }
@@ -182,19 +182,22 @@ category.addEventListener('change', (event) => {
     verifValidityForm()
 })
 
+// vider formulaire
+function resetForm() {
+   document.querySelector('.imagePreview').innerHTML = '';
+   document.querySelector('.imagePreview').style.display = 'none';
+   document.querySelector('.detailPreview').style.display = 'flex';
+   document.getElementById('photoUpload').value = ''
+   document.getElementById('photoTitle').value = ''
+   document.getElementById('photoCategory').value =''
+}
 
 // telecharger nouvelle photo
-function updateGallery(photoData) {
-    
-    const gallery = document.querySelector('.gallery')
-    const newFigure = document.createElement('figure')
-    const newFigcaption = document.createElement('figcaption')
-    const newImage = document.createElement('img')
-    newImage.src = photoData.imageUrl
-    newImage.alt = photoData.title
-    newFigcaption.textContent = photoData.title
-    newFigure.appendChild(newImage)
-    newFigure.appendChild(newFigcaption)
-    // nouvelle image add galerie
-    gallery.appendChild(newFigure)
+function updateGalleries() {
+   fetch('http://localhost:5678/api/works')
+   .then(response => response.json()) // convertit la réponse en JSON
+   .then(projects => {     
+   afficherGalerieIndex(projects)
+   afficherGalerieModale(projects)
+   })
 }
